@@ -17,7 +17,7 @@ chat_bot-test/
 - Node.js
 - Express
 - TypeScript
-- PostgreSQL (or any other database of choice)
+- PostgreSQL 
 
 ### Setting Up Backend
 1. Navigate to the backend folder:
@@ -42,7 +42,7 @@ chat_bot-test/
 ### Technologies Used
 - Next.js
 - TypeScript
-- Tailwind CSS (optional)
+- Tailwind CSS 
 
 ### Setting Up Frontend
 1. Navigate to the frontend folder:
@@ -55,7 +55,7 @@ chat_bot-test/
    ```
 3. Create an `.env` file in `chat_bot` and add:
    ```env
-   NEXT_PUBLIC_BASE_API_URL=http://localhost:5000
+   NEXT_PUBLIC_BASE_API_URL=http://localhost:7000
    ```
 4. Start the development server:
    ```sh
