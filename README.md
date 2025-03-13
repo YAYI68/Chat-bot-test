@@ -1,69 +1,79 @@
-# Chatbot Assessment
+# Chat Bot Assessment
 
-## Project Overview
-This project involves developing a chatbot with a **Node.js, Express, and TypeScript** backend and a **Next.js and TypeScript** frontend. The backend is structured within a folder called `chat_api`, which handles API requests and responses, while the frontend serves the user interface.
-
-## Technologies Used
-
-### Backend (`chat_api`)
-- **Node.js**
-- **Express.js**
-- **TypeScript**
-
-### Frontend
-- **Next.js**
-- **TypeScript**
+This project is a Chat Bot system consisting of a backend (`chat_api`) built with Node.js, Express, and TypeScript, and a frontend built with Next.js and TypeScript. The entire project is housed in a folder named `chat_bot`.
 
 ## Project Structure
+
 ```
-chatbot-assessment/
-│
-├── chat_api/                # Backend folder
-│   ├── src/
-│   │   ├── controllers/
-│   │   ├── routes/
-│   │   ├── services/
-│   │   ├── app.ts
-│   │   ├── server.ts
-│   ├── tsconfig.json
-│   ├── package.json
-│
-├── frontend/                # Frontend folder
-│   ├── components/
-│   ├── pages/
-│   ├── styles/
-│   ├── tsconfig.json
-│   ├── package.json
-│
-└── README.md
+chat_bot-test/
+│── chat_api/        # Backend service (Node.js, Express, TypeScript)
+│── chat_bot/        # Frontend application (Next.js, TypeScript)
+└── README.md        # Project documentation
 ```
 
-## Backend (`chat_api`)
-### Installation
-```sh
-cd chat_api
-npm install
-```
+## Backend - `chat_api`
 
-### Running the Server
-```sh
-npm run dev
-```
+### Technologies Used
+- Node.js
+- Express
+- TypeScript
+- PostgreSQL (or any other database of choice)
 
+### Setting Up Backend
+1. Navigate to the backend folder:
+   ```sh
+   cd chat_bot/chat_api
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Create an `.env` file in `chat_api` and add:
+   ```env
+   DATABASE_URL=your_database_connection_string
+   ```
+4. Start the development server:
+   ```sh
+   npm run dev
+   ```
 
+## Frontend - `frontend`
 
-## Frontend (`Next.js`)
-### Installation
-```sh
-cd chat_bot
-npm install
-```
+### Technologies Used
+- Next.js
+- TypeScript
+- Tailwind CSS (optional)
 
-### Running the Application
-```sh
-npm run dev
-```
+### Setting Up Frontend
+1. Navigate to the frontend folder:
+   ```sh
+   cd chat_bot/frontend
+   ```
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+3. Create an `.env` file in `chat_bot` and add:
+   ```env
+   NEXT_PUBLIC_BASE_API_URL=http://localhost:5000
+   ```
+4. Start the development server:
+   ```sh
+   npm run dev
+   ```
 
+## Running the Project
+To run both backend and frontend:
+1. Start the backend server:
+   ```sh
+   cd chat_bot/chat_api && npm run dev
+   ```
+2. Start the frontend server:
+   ```sh
+   cd chat_bot/frontend && npm run dev
+   ```
+
+The frontend should now be accessible at `http://localhost:3000`, and it will communicate with the backend running on `http://localhost:7000`.
 
 ## Conclusion
-This project demonstrates a chatbot system with a structured backend (`chat_api`) and a frontend built with **Next.js**. It leverages **TypeScript** for type safety and maintainability.
+This project sets up a simple chatbot with a structured backend and frontend system, utilizing TypeScript for a strongly-typed development experience.
