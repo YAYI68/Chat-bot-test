@@ -13,7 +13,7 @@ interface ErrorResponse {
   message: string;
 }
 
-export function useGetChatMessages(chatId: string) {
+export function useGetChatMessages(chatId: number) {
   const { data, error, ...others } = useQuery<
     ChatMessageResponse,
     ErrorResponse

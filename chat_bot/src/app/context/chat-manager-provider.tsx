@@ -3,8 +3,7 @@ import { MessageType } from '@/types';
 import { PropsWithChildren, useState, createContext, useContext } from 'react';
 
 type ContentType = {
-  chatId: string
-  num: number
+  chatId: number
 }
 // Define the shape of the context
 interface ChatContextType {
@@ -26,8 +25,7 @@ export function ChatManagerWrapper({ children }: ChatManagerProps) {
   const [messages, setMessages] = useState<MessageType[]>([]);
   const [isModal,setIsModal] = useState(false)
   const [modalContent, setModalContent] = useState({
-   chatId:'',
-   num: 0
+   chatId:0,
   })
 
   return (
@@ -38,7 +36,7 @@ export function ChatManagerWrapper({ children }: ChatManagerProps) {
 }
 
 // Custom hook to use the context
-export const useChatManager = () => {
+export function useChatManager () {
   const context = useContext(ChatManagerContext);
   if (!context) {
     throw new Error('useChatManager must be used within a ChatManagerWrapper');

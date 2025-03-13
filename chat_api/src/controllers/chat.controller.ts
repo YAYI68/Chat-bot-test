@@ -79,7 +79,7 @@ export const createNewChat = tryCatch(async (req: Request, res: Response) => {
     );
     }
     await Promise.all([
-      deleteAllChatMessage(chatId),
+       deleteAllChatMessage(chatId),
        deleteOneChat(chatId)
     ])
      return res.status(201).json({

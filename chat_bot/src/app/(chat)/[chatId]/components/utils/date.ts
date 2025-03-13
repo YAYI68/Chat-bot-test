@@ -1,36 +1,37 @@
 export function formatDateWithOrdinal(input: Date | string): string {
-  const date = typeof input === "string" ? new Date(input) : input;
+  const date = typeof input === 'string' ? new Date(input) : input;
 
   if (isNaN(date.getTime())) {
-    throw new Error("Invalid date input");
+    throw new Error('Invalid date input');
   }
 
-  const day = date.getUTCDate();
-  const month = date.toLocaleString("en-US", { month: "short", timeZone: "UTC" });
-
-  // Get ordinal suffix
+  const day = date.getDate();
   const getOrdinalSuffix = (day: number): string => {
-    if (day >= 11 && day <= 13) return "th";
+    if (day >= 11 && day <= 13) return 'th'; // Special case for 11th, 12th, 13th
     switch (day % 10) {
       case 1:
-        return "st";
+        return 'st';
       case 2:
-        return "nd";
+        return 'nd';
       case 3:
-        return "rd";
+        return 'rd';
       default:
-        return "th";
+        return 'th';
     }
   };
 
-  const ordinal = getOrdinalSuffix(day);
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric',
+  };
 
-  const time = date.toLocaleString("en-US", {
-    hour: "numeric",
-    minute: "numeric",
-    hour12: true,
-    timeZone: "UTC",
-  });
+  const formattedDate = new Intl.DateTimeFormat('en-US', options).format(date);
+  const ordinalSuffix = getOrdinalSuffix(day);
 
-  return `${month} ${day}${ordinal}, ${time}`;
+  // Replace the day number with the day number + suffix
+  return formattedDate.replace(
+    /\d+/,
+    (day: string) => `${day}${ordinalSuffix}`,
+  );
 }

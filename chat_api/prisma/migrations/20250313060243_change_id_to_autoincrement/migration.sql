@@ -1,22 +1,10 @@
-/*
-  Warnings:
-
-  - You are about to drop the `chat` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `chatMessage` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropForeignKey
-ALTER TABLE "chatMessage" DROP CONSTRAINT "chatMessage_chatId_fkey";
-
--- DropTable
-DROP TABLE "chat";
-
--- DropTable
-DROP TABLE "chatMessage";
+-- CreateEnum
+CREATE TYPE "MessageSender" AS ENUM ('chatbot', 'user');
 
 -- CreateTable
 CREATE TABLE "Chat" (
-    "id" TEXT NOT NULL,
+    "id" SERIAL NOT NULL,
+    "userId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -26,7 +14,7 @@ CREATE TABLE "Chat" (
 -- CreateTable
 CREATE TABLE "ChatMessage" (
     "id" TEXT NOT NULL,
-    "chatId" TEXT NOT NULL,
+    "chatId" INTEGER NOT NULL,
     "text" TEXT NOT NULL,
     "sender" "MessageSender" NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,

@@ -14,7 +14,7 @@ interface ErrorResponse {
   message: string;
 }
 
-export function useChats(chatId:string, userId:string) {
+export function useChats(chatId:number, userId:string) {
   const { data, error, ...others } = useQuery<
     ChatHistoryResponse,
     ErrorResponse

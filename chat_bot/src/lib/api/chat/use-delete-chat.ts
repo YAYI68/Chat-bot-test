@@ -5,7 +5,7 @@ import { AxiosError } from 'axios';
 import { MessageType } from '@/types';
 
 interface DeleteChatPayload {
-  chatId: string;
+  chatId: number;
 }
 
 interface DeleteChatResponse {
@@ -35,7 +35,7 @@ export function useDeleteChat(
   });
 
   return {
-    sendChat: mutateAsync,
+    deleteChat: mutateAsync,
     ...others,
   };
 }

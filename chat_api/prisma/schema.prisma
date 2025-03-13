@@ -11,11 +11,11 @@ datasource db {
 }
 
 model Chat {
-id       String @id @default(uuid())
-userId    String 
-messages ChatMessage[]
-createdAt          DateTime             @default(now())
-updatedAt          DateTime             @updatedAt
+  id        Int       @id @default(autoincrement())
+  userId    String
+  messages  ChatMessage[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
 enum MessageSender {
@@ -25,7 +25,7 @@ enum MessageSender {
 
 model ChatMessage {
   id  String @id @default(uuid())
-  chatId String
+  chatId Int
   chat  Chat @relation(fields: [chatId], references: [id])
   text String
   sender MessageSender

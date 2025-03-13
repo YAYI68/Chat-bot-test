@@ -30,7 +30,7 @@ export async function getAllUserChat(userId:string){
     return chats
 }
 
-export async function createMessage(chatId: string, text:string){
+export async function createMessage(chatId: number, text:string){
     await prisma.chatMessage.create({
         data:{
             text:text,
@@ -53,7 +53,7 @@ export async function createMessage(chatId: string, text:string){
     return chatbotMessage
 }
 
-export async function getUserChatHistory(chatId:string){
+export async function getUserChatHistory(chatId:number){
    const messages = await prisma.chatMessage.findMany({
         where:{
             chatId: chatId
@@ -62,7 +62,7 @@ export async function getUserChatHistory(chatId:string){
     return messages
 }
 
-export async function findOneChat(chatId:string){
+export async function findOneChat(chatId:number){
     const chat = await prisma.chat.findFirst({
          where:{
              id: chatId
@@ -71,7 +71,7 @@ export async function findOneChat(chatId:string){
      return chat
  }
 
- export async function deleteOneChat(chatId:string){
+ export async function deleteOneChat(chatId:number){
     const chat = await prisma.chat.delete({
          where:{
              id: chatId
@@ -80,7 +80,7 @@ export async function findOneChat(chatId:string){
      return chat
  }
 
- export async function deleteAllChatMessage(chatId:string){
+ export async function deleteAllChatMessage(chatId:number){
     const chat = await prisma.chatMessage.deleteMany({
          where:{
              chatId: chatId

@@ -5,14 +5,12 @@ import { GroupedMessage, groupMessagesByDate } from "./utils/group-message";
 import { formatDateWithOrdinal } from "./utils/date";
 import { ChatMessage } from "./chat-message";
 import { ChatDateDivider } from "./chat-date-divider";
-import { ChatTextArea } from "./chat-text-area";
 
 type ChatAreaProp = {
   messages: MessageType[]
 }
 
 export function ChatArea({messages}:ChatAreaProp){
-  console.log({messages})
     const [groupedMessages, setGroupMessages] = useState<Array<GroupedMessage>>(
         [],
       );
@@ -24,8 +22,8 @@ export function ChatArea({messages}:ChatAreaProp){
         });
         setGroupMessages(groupMessagesByDate(messages as MessageType[]));
       }, [messages]);
-      if (!messages) return 'No Chat Messages Available';
-   return <div className="w-full h-full flex-1 flex flex-col gap-3 p-2 relative">
+      if (!messages) return <EmptyMessages />;
+   return <div className="w-full  overflow-y-scroll flex-1 flex flex-col gap-3 relative">
          {groupedMessages.map((groupedMessage, i) => (
           <div key={groupedMessage.date + i} className="flex flex-col gap-3">
             <ChatDateDivider
@@ -41,4 +39,9 @@ export function ChatArea({messages}:ChatAreaProp){
           </div>
         ))}
     </div>
+}
+
+function EmptyMessages(){
+
+  return <div className="w-full h-[70vh] overflow-y-scroll flex-1 flex flex-col gap-3 p-2 relative"></div>
 }

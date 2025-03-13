@@ -35,7 +35,7 @@ function ChatBotMessage({message}: ChatMesageType){
     const startTyping = () => {
       const hideTimeout = setTimeout(() => {
         setIsTyping(false);
-      }, 6000);
+      }, 2000);
 
       return () => clearTimeout(hideTimeout);
     };
@@ -50,7 +50,7 @@ function ChatBotMessage({message}: ChatMesageType){
          </div> 
          <div className=" rounded-tl-3xl rounded-tr-3xl  rounded-br-3xl rounded-bl-lg  bg-secondary-300 p-4">
          {isTyping ?
-          <ChatTypingIndicator duration={5000} />:
+          <ChatTypingIndicator duration={2000} />:
           <p className="text-label-500">{message.text}</p>
         } 
             

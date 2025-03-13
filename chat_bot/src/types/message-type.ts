@@ -1,6 +1,6 @@
 export type MessageType ={
     id: string;
-    chatId: string
+    chatId: number
     text: string;
     createdAt: Date | string
     sender: 'chatbot' | 'user'
@@ -8,7 +8,7 @@ export type MessageType ={
 }
 
 export type Chat = {
-    id: string;
+    id: number;
     userId: string;
     createdAt: Date | string
 } 

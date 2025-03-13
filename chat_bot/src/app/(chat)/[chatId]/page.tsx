@@ -14,7 +14,7 @@ import { Loader } from "../components/loader";
 export default function ChatDetailPage(){
   const params = useParams();
   const chatId = params.chatId;
-    const {chatMessages, isLoading, isSuccess} = useGetChatMessages(chatId as string)
+    const {chatMessages, isLoading, isSuccess} = useGetChatMessages(Number(chatId))
     const {messages, setMessages } = useChatManager()
 
     useEffect(()=>{
@@ -23,7 +23,7 @@ export default function ChatDetailPage(){
         }  
     },[chatMessages, setMessages, isSuccess])
 
-    return <div className=" w-screen h-screen lg:w-full lg:h-full flex flex-col items-center pb-4 lg:bg-white rounded-2xl overflow-x-hidden">
+    return <div className=" relative w-screen lg:h-[90vh] h-full lg:w-full p-4  flex flex-col items-center lg:bg-white rounded-2xl overflow-x-hidden ">
          <ChatHeader />
          {isLoading && <Loader />}
          {isSuccess && 

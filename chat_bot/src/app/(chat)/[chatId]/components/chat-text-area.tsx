@@ -15,12 +15,11 @@ export function ChatTextArea (){
     const { setMessages} = useChatManager()
     const params = useParams();
     const chatId = params.chatId;
-    const userId = getOrCreateUserId()
     const addMessage = (newMessage: MessageType) => {
         setMessages((prevMessages) => [...prevMessages, newMessage]);
       };
       
-    const { sendChat } = useSendChat({
+    const { sendChat, isPending } = useSendChat({
       onSuccess: ({ data: { data } }) => {
         addMessage(data)
       },
@@ -32,12 +31,12 @@ export function ChatTextArea (){
         e.preventDefault()
         if(text.trim().length>0){
             void sendChat({
-                chatId: chatId as string,
+                chatId: chatId as string ,
                 text
               });
               addMessage({
                 id: uuidv4(),
-                chatId: chatId as string,
+                chatId: Number(chatId),
                 text,
                 createdAt: new Date(),
                 sender: 'user'
@@ -46,8 +45,8 @@ export function ChatTextArea (){
         }
     }
 
-    return <form  onSubmit={handleSubmit} className="w-[95%] p-4 flex overflow-hidden rounded-3xl bottom-5 lg:left-5 bg-secondary-300">
-        <input onChange={(e)=>setText(e.target.value)} type="text" className="w-full bg-secondary-300 focus-within:outline-none text-label-500" />
+    return <form  onSubmit={handleSubmit} className="lg:w-[95%] w-full p-4 lg:absolute  flex overflow-hidden rounded-3xl lg:bottom-5 lg:left-5 bg-secondary-300">
+        <input disabled={isPending} value={text} onChange={(e)=>setText(e.target.value)} type="text" className="w-full bg-secondary-300 focus-within:outline-none text-label-500" />
         <button className="size-[2rem]">
             <SendIcon />
         </button>

@@ -8,10 +8,10 @@ export const startChatSchema = z.object({
 });
 
 export const sendMessageSchema = z.object({
-    chatId: z
-      .string({
-        required_error: "ChatId is required",
-      }),
+  chatId: z
+  .string()
+  .transform((val) => Number(val))
+  .refine((val) => !isNaN(val), { message: "ChatId must be a number" }),
       text: z
       .string({
         required_error: "Message text is required",
@@ -20,7 +20,7 @@ export const sendMessageSchema = z.object({
 
   export const chatSchema = z.object({
     chatId: z
-      .string({
-        required_error: "ChatId is required",
-      })
+      .union([z.number(), z.string()])
+      .transform((val) => (typeof val === "string" ? Number(val) : val))
+      .refine((val) => typeof val === "number" && !isNaN(val), { message: "ChatId must be a valid number" }),
   });
